@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>Ocpp 1.6 Sim</title>
+        <link rel="stylesheet" type="text/css" href="./css/materialize.min.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+        <script src="./js/jquery-3.5.1.min.js"></script>
+        <script src="./js/materialize.min.js"></script>
+        <script src="./js/messages.js"></script>
+        <script src="./js/scripts.js"></script>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo" style="margin-left: 1rem;">Ocpp 1.6 Sim</a>
+            </div>
+          </nav>
+
+        <div class="row" style="margin-top: 1rem;">
+            <div class="col s5">
+                <label for="server_url">CSMS</label>
+                <input id="server_url" type="text"  value="ws://localhost:8081/Ocpp/CP1">
+            </div>
+            <div class="col s2">
+                <label for="tag_id">Tag</label>
+                <input id="tag_id" type="text"  value="TAG1">
+            </div>
+            <div class="col s3">
+                <div class="input-field">
+                    <select id="connector_id">
+                        <option value="1" selected>Connector 1</option>
+                        <option value="2">Connector 2</option>
+                        <option value="3">Connector 3</option>
+                        <option value="4">Connector 4</option>
+                    </select>
+                    <label>Connectors</label>
+                </div>
+            </div>
+            <div class="col s2">
+                <div style="height: 4rem; background-color: #FF5722;" id="stato"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s6">
+                <a id="connetti" class="waves-effect waves-light btn act-btn" style="width: 100%;" onclick="connectWs()">Connect</a>
+                <a id="heartbeat" class="waves-effect waves-light btn act-btn" style="width: 100%;" onclick="heartbeat()">Heartbeat</a>
+
+                <a id="authorize" class="waves-effect waves-light btn act-btn" style="width: 100%;" onclick="authorize()">Authorize</a>
+                <a id="startTransaction" class="waves-effect waves-light btn act-btn" style="width: 100%;" onclick="startTransaction()">Start transaction</a>
+                <div class="col s12">
+                    <div class="input-field col s6">
+                        <select id="tstop_reason">
+                            <option value="EmergencyStop">EmergencyStop</option>
+                            <option value="EVDisconnected" selected>EVDisconnected</option>
+                            <option value="HardReset">HardReset</option>
+                            <option value="Local">Local</option>
+                            <option value="Other">Other</option>
+                            <option value="PowerLoss">PowerLoss</option>
+                            <option value="Reboot">Reboot</option>
+                            <option value="Remote">Remote</option>
+                            <option value="SoftReset">SoftReset</option>
+                            <option value="UnlockCommand">UnlockCommand</option>
+                            <option value="DeAuthorized">DeAuthorized</option>
+                        </select>
+                        <label>Reason</label>
+                    </div>
+                    <div class="col s6">
+                        <label for="tmeter_end">Final meetr value</label>
+                        <input id="tmeter_end" type="text"  value="2000">
+                    </div>
+                </div>
+                <a id="startTransaction" class="waves-effect waves-light btn act-btn" style="width: 100%;" onclick="stopTransaction()">Stop transaction</a>
+                <label for="metervalue">Meter [Wh]</label>
+                <input id="metervalue" class="act-btn" type="text"  value="1000">
+                <a id="sendMeterValue" class="waves-effect waves-light btn act-btn" style="width: 100%;" onclick="sendMeterValue()">Send meter value</a>
+                
+                <div class="input-field">
+                    <select id="status_notif">
+                        <option value="Available" selected>Available</option>
+                        <option value="Preparing">Preparing</option>
+                        <option value="Charging">Charging</option>
+                        <option value="SuspendedEvse">SuspendedEvse</option>
+                        <option value="SuspendedEv">SuspendedEv</option>
+                        <option value="Finishing">Finishing</option>
+                        <option value="Reserved">Reserved</option>
+                        <option value="Unavailable">Unavailable</option>
+                        <option value="Faulted">Faulted</option>
+                    </select>
+                    <label>Status</label>
+                </div>
+                <a id="statusNotification" class="waves-effect waves-light btn act-btn" style="width: 100%;" onclick="statusNotification()">Send status notification</a>
+            </div>
+            <div class="col s6">
+                <label for="log">LOG</label>
+                <ul id="log"></ul>
+            </div>
+        </div>
+        <script>init();</script>
+    </body>
+</html>
